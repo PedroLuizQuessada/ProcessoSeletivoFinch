@@ -62,6 +62,7 @@ public class AmericanasService implements LojaService {
         }
     }
 
+    @Override
     public void acessarSite() throws SiteIndisponivelException, UrlInvalidaException {
         logger.info(String.format("Acessando o site %s", getUrl()));
 
@@ -93,15 +94,14 @@ public class AmericanasService implements LojaService {
         }
 
         try {
-            seleniumUtil.moverParaElemento(webDriver, 10, By.xpath("//select[@id='sort-by']"));
-            timerUtil.aguardarSegundos(2);
-            seleniumUtil.aguardarElementoClicavel(webDriver, 10, By.xpath("//select[@id='sort-by']")).click();
-            seleniumUtil.aguardarElementoClicavel(webDriver, 10, By.xpath("//option[@value='lowerPriceRelevance']")).click();
+            seleniumUtil.aguardarElementoVisivel(webDriver, 10, By.xpath("//select[@id='sort-by']"));
         }
         catch (ElementoNaoEncontradoException e) {
             //produto não encontrado
             return;
         }
+
+        ordenarResultados();
 
         timerUtil.aguardarSegundos(5);
         List<WebElement> webElements = seleniumUtil.aguardarElementosVisiveis(webDriver, 10, By.xpath("//a[@aria-current='page']/div[3]/span[1]"));
@@ -112,6 +112,14 @@ public class AmericanasService implements LojaService {
                 break;
             }
         }
+    }
+
+    @Override
+    public void ordenarResultados() throws ElementoNaoEncontradoException, TimerUtilException {
+        seleniumUtil.moverParaElemento(webDriver, 10, By.xpath("//select[@id='sort-by']"));
+        timerUtil.aguardarSegundos(2);
+        seleniumUtil.aguardarElementoClicavel(webDriver, 10, By.xpath("//select[@id='sort-by']")).click();
+        seleniumUtil.aguardarElementoClicavel(webDriver, 10, By.xpath("//option[@value='lowerPriceRelevance']")).click();
     }
 
     @Override

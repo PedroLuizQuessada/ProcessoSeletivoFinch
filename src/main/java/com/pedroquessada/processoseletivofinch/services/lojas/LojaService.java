@@ -9,5 +9,6 @@ public interface LojaService {
     void acessarSite() throws SiteIndisponivelException, UrlInvalidaException;
     String getUrl();
     void pesquisarProduto(Produto produto) throws ElementoNaoEncontradoException, TimerUtilException;
+    void ordenarResultados() throws ElementoNaoEncontradoException, TimerUtilException;
     void fecharNavegador() throws FecharNavegadorException;
 }
