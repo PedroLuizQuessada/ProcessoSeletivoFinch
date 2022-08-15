@@ -1,5 +1,5 @@
 # ProcessoSeletivoFinch
-Automação desenvolvida como parte de um processo seletivo da empresa Finch Soluções.
+Automação desenvolvida como parte de um processo seletivo da empresa Finch Soluções. Seu objetivo é entrar em sites de loja e buscar por produtos, recuperando os menores preços.
 
 ## Requisitos
 O computador onde rodará a automação deve possuir os seguintes itens:<br/>
